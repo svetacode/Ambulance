@@ -7,17 +7,20 @@ import java.util.Scanner;
 
 public class ConsoleController {
     public static void main(String[] args) {
-        printMenu();
+        while (true) {
+            printMenu();
 
-        Scanner scanner = new Scanner(System.in);
-        MedicalStationService medicalStationService = new MedicalStationService();
-        int command = scanner.nextInt();
-        switch (command) {
-            case 1 -> {
-                fillMedicalBrigade(scanner, medicalStationService);
+            Scanner scanner = new Scanner(System.in);
+            MedicalStationService medicalStationService = new MedicalStationService();
+            int command = scanner.nextInt();
+            switch (command) {
+                case 1 -> {
+                    fillMedicalBrigade(scanner, medicalStationService);
+                }
+                case 0 -> System.exit(0);
             }
-        }
 
+        }
     }
 
     private static void fillMedicalBrigade(Scanner scanner, MedicalStationService medicalStationService) {
@@ -52,6 +55,7 @@ public class ConsoleController {
         System.out.println("МЕНЮ: ");
         System.out.println("1 - добавить бригаду");
         System.out.println("2 - удалить бригаду");
+        System.out.println("0- выход из программы");
         System.out.print("Выберите пункт меню: ");
     }
 }
