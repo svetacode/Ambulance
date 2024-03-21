@@ -17,4 +17,12 @@ public class Person implements MedicalWorker{
     public int getMaxWeight() {
         return maxWeight;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", maxWeight=" + maxWeight +
+                '}';
+    }
 }

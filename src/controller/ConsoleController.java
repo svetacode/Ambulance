@@ -1,25 +1,38 @@
 package controller;
 
+import dto.MedicalBrigade;
 import dto.Specialization;
 import service.MedicalStationService;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleController {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        MedicalStationService medicalStationService = new MedicalStationService();
         while (true) {
             printMenu();
 
-            Scanner scanner = new Scanner(System.in);
-            MedicalStationService medicalStationService = new MedicalStationService();
             int command = scanner.nextInt();
             switch (command) {
                 case 1 -> fillMedicalBrigade(scanner, medicalStationService);
+                case 3 -> printBrigadeList(medicalStationService);
                 case 0 -> System.exit(0);
             }
 
         }
     }
+
+    private static void printBrigadeList(MedicalStationService medicalStationService) {
+        Collection<MedicalBrigade> medicalBrigadeList = medicalStationService.getBrigadeList();
+        System.out.println("Список бригад:");
+        for(MedicalBrigade medicalBrigade : medicalBrigadeList){
+            System.out.printf("%s - %s %n", medicalBrigade.getNumberOfBrigade(), medicalBrigade);
+        }
+    }
+
 
     private static void fillMedicalBrigade(Scanner scanner, MedicalStationService medicalStationService) {
         System.out.println("Выберите специализацию бригады: ");

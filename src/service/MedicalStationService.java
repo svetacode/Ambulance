@@ -34,4 +34,8 @@ public class MedicalStationService {
         }
         medicalBrigadeMap.put(newBrigade.getNumberOfBrigade(), newBrigade);
     }
+
+    public Collection<MedicalBrigade> getBrigadeList() {
+        return medicalBrigadeMap.values();
+    }
 }

@@ -1,5 +1,6 @@
 package dto;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class MedicalBrigade {
@@ -36,4 +37,15 @@ public class MedicalBrigade {
     public int getNumberOfBrigade() {
         return numberOfBrigade;
     }
+
+    @Override
+    public String toString() {
+        return "MedicalBrigade{" +
+                "specialization=" + specialization +
+                ", doctor=" + doctor +
+                ", paramedic=" + paramedic +
+                ", numberOfBrigade=" + numberOfBrigade +
+                '}';
+    }
+
 }
