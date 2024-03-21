@@ -4,14 +4,15 @@ import dto.MedicalBrigade;
 import dto.Person;
 import dto.Specialization;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MedicalStationService {
-    private final List<MedicalBrigade> medicalBrigadeList;
+    private final Map<Integer, MedicalBrigade> medicalBrigadeMap;
+
+    private final Random random = new Random();
 
     public MedicalStationService() {
-        medicalBrigadeList = new ArrayList<>();
+        medicalBrigadeMap = new HashMap<>();
     }
 
 
@@ -21,14 +22,16 @@ public class MedicalStationService {
             newBrigade = new MedicalBrigade(
                     Specialization.values()[specializationCode-1],
                     new Person(doctorInfo),
-                    new Person(paramedicInfo)
+                    new Person(paramedicInfo),
+                    random.nextInt()
             );
         } else {
             newBrigade = new MedicalBrigade(
                     Specialization.values()[specializationCode-1],
-                    new Person(doctorInfo)
+                    new Person(doctorInfo),
+                    random.nextInt()
             );
         }
-        medicalBrigadeList.add(newBrigade);
+        medicalBrigadeMap.put(newBrigade.getNumberOfBrigade(), newBrigade);
     }
 }

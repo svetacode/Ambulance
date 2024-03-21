@@ -14,9 +14,7 @@ public class ConsoleController {
             MedicalStationService medicalStationService = new MedicalStationService();
             int command = scanner.nextInt();
             switch (command) {
-                case 1 -> {
-                    fillMedicalBrigade(scanner, medicalStationService);
-                }
+                case 1 -> fillMedicalBrigade(scanner, medicalStationService);
                 case 0 -> System.exit(0);
             }
 
@@ -55,6 +53,7 @@ public class ConsoleController {
         System.out.println("МЕНЮ: ");
         System.out.println("1 - добавить бригаду");
         System.out.println("2 - удалить бригаду");
+        System.out.println("3- вывести список всех бригад:");
         System.out.println("0- выход из программы");
         System.out.print("Выберите пункт меню: ");
     }
