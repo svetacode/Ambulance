@@ -5,10 +5,12 @@ import dto.Specialization;
 import service.MedicalStationService;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleController {
+    public ConsoleController() {
+    }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         MedicalStationService medicalStationService = new MedicalStationService();
@@ -20,6 +22,7 @@ public class ConsoleController {
                 case 1 -> fillMedicalBrigade(scanner, medicalStationService);
                 case 3 -> printBrigadeList(medicalStationService);
                 case 0 -> System.exit(0);
+                case 2 -> deleteBrigade(scanner, medicalStationService);
             }
 
         }
@@ -28,7 +31,7 @@ public class ConsoleController {
     private static void printBrigadeList(MedicalStationService medicalStationService) {
         Collection<MedicalBrigade> medicalBrigadeList = medicalStationService.getBrigadeList();
         System.out.println("Список бригад:");
-        for(MedicalBrigade medicalBrigade : medicalBrigadeList){
+        for (MedicalBrigade medicalBrigade : medicalBrigadeList) {
             System.out.printf("%s - %s %n", medicalBrigade.getNumberOfBrigade(), medicalBrigade);
         }
     }
@@ -39,7 +42,7 @@ public class ConsoleController {
         Specialization[] specializations = Specialization.values();
         for (int i = 0; i < specializations.length; i++) {
             Specialization specialization = specializations[i];
-            System.out.printf("%s - %s %n", (i+1), specialization);
+            System.out.printf("%s - %s %n", (i + 1), specialization);
         }
         int specializationCode = scanner.nextInt();
 
@@ -62,6 +65,18 @@ public class ConsoleController {
 
     }
 
+    private static void deleteBrigade(Scanner scanner, MedicalStationService medicalStationService) {
+        System.out.println("Введите номер бригады для удаления: ");
+        int brigadeNumber = scanner.nextInt();
+        boolean isDeleted = medicalStationService.deleteMedicalBrigade(brigadeNumber);
+        if (isDeleted) {
+            System.out.println("Бригада успешно удалена");
+        } else {
+            System.out.println("Бригада с таким номером не найдена");
+        }
+    }
+
+
     private static void printMenu() {
         System.out.println("МЕНЮ: ");
         System.out.println("1 - добавить бригаду");
@@ -69,5 +84,6 @@ public class ConsoleController {
         System.out.println("3- вывести список всех бригад:");
         System.out.println("0- выход из программы");
         System.out.print("Выберите пункт меню: ");
+
     }
 }

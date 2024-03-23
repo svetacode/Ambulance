@@ -18,16 +18,16 @@ public class MedicalStationService {
 
     public void addMedicalBrigade(int specializationCode, String doctorInfo, String paramedicInfo) {
         MedicalBrigade newBrigade;
-        if (paramedicInfo!=null){
+        if (paramedicInfo != null) {
             newBrigade = new MedicalBrigade(
-                    Specialization.values()[specializationCode-1],
+                    Specialization.values()[specializationCode - 1],
                     new Person(doctorInfo),
                     new Person(paramedicInfo),
                     random.nextInt()
             );
         } else {
             newBrigade = new MedicalBrigade(
-                    Specialization.values()[specializationCode-1],
+                    Specialization.values()[specializationCode - 1],
                     new Person(doctorInfo),
                     random.nextInt()
             );
@@ -37,5 +37,13 @@ public class MedicalStationService {
 
     public Collection<MedicalBrigade> getBrigadeList() {
         return medicalBrigadeMap.values();
+    }
+
+    public boolean deleteMedicalBrigade(int brigadeNumber) {
+        if (medicalBrigadeMap.containsKey(brigadeNumber)) {
+            medicalBrigadeMap.remove(brigadeNumber);
+            return true;
+        }
+        return false;
     }
 }
